@@ -34,7 +34,7 @@ int userType::operator!=( userType &t){
         return 1;
 }
 
-userType& userType::operator=(userType const&t){
+void userType::operator=(userType const&t){
     x = t.x;
     y = t.y;
     z = t.z;

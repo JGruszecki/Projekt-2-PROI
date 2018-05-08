@@ -28,7 +28,7 @@ public:
         if(head == NULL)
             delete head;
         else{
-            while(current->next != NULL){
+            while(current->next != NULL){  //Usuwanie elementow po kolei od pierwszego
                 current = current->next;
                 delete temp;
                 temp = current;
@@ -37,8 +37,8 @@ public:
         }
     }
 
-    int addEntry(KeyType key, ValueType val){
-        if(head == NULL){
+    int addEntry(KeyType key, ValueType val){      //Dodawanie elementow
+        if(head == NULL){        //Jesli slownik jest pusty
             head = new DictionaryEntry;
             head->value = val;
             head->key = key;
@@ -46,7 +46,7 @@ public:
             return 0;
         }
         DictionaryEntry *temp = head;
-        while(temp->next != NULL){
+        while(temp->next != NULL){         //Sprawdzanie czy istnieje element o danym kluczu
             if(temp->key != key){
                 temp = temp->next;
             }
@@ -60,16 +60,17 @@ public:
         entry->key = key;
         entry->value = val;
         temp->next = entry;
+        return 0;
     }
 
-    int deleteEntry(KeyType key){
-        if(head == NULL){
+    int deleteEntry(KeyType key){         //Usuwanie elementow
+        if(head == NULL){       //Jesli slownik jest pusty konczy dzialanie funkcji
             cout << "Slownik jest pusty!" << endl;
             return 1;
         }
         DictionaryEntry *temp = head;
         DictionaryEntry *prev;
-        if(key == head->key){
+        if(key == head->key){ //Jesli usuwamy pierwszy element
             head = temp->next;
             delete temp;
             return 0;
@@ -77,7 +78,7 @@ public:
         prev = head;
         temp = temp->next;
         while(temp->next != NULL){
-            if(key == temp->key){
+            if(key == temp->key){    //Szukamy elementu o danym kluczu
                 if(temp->next == NULL){
                     prev->next = NULL;
                     delete temp;
@@ -88,7 +89,7 @@ public:
                 return 0;
             }
         }
-        if(key == temp->key){
+        if(key == temp->key){     //Jesli usuwamy ostatni element
                 if(temp->next == NULL){
                     prev->next = NULL;
                     delete temp;
@@ -98,10 +99,11 @@ public:
                 delete temp;
                 return 0;
         }
+        return 1;
     }
 
-    ValueType entrySearch(KeyType key){
-        if(head == NULL){
+    ValueType entrySearch(KeyType key){      //Szukanie elementu o danym kluczu
+        if(head == NULL){   //Jesli slownik jest pusty konczy dzialanie funkcji
             cout << "Slownik jest pusty!" << endl;
             return NULL;
         }
@@ -124,14 +126,14 @@ public:
         return NULL;
     }
 
-    int change(KeyType key, ValueType val){
+    int change(KeyType key, ValueType val){            //Zmienianie elementu o danym kluczu
         if(head == NULL){
-            cout << "S³ownik jest pusty" << endl;
+            cout << "Slownik jest pusty" << endl;
             return 1;
         }
         DictionaryEntry *temp = head;
         while(temp->next != NULL){
-            if(temp->key != key){
+            if(temp->key != key){   //Szukanie elementu o danym kluczu
                 temp = temp->next;
             }
             else{
@@ -139,7 +141,7 @@ public:
                 return 0;
             }
         }
-        if(temp->key != key){
+        if(temp->key != key){    //ostatni element
                 temp = temp->next;
             }
             else{
@@ -150,20 +152,20 @@ public:
         return 1;
     }
 
-    int checkSize(){
+    int checkSize(){      //Sprawdzanie wielkosci slownika
         int it = 0;
-        if(head == NULL){
+        if(head == NULL){      //Jesli nie ma pierwszego elementu zwraca 0
             return it;
         }
         DictionaryEntry *temp = head;
-        while(temp->next != NULL){
+        while(temp->next != NULL){   //Zliczanie elementow
             it++;
             temp = temp->next;
         }
         return it + 1;
     }
 
-    void print(){
+    void print(){           //Drukowanie slownika
         if(head == NULL){
             cout << "Slownik jest pusty" << endl;
             return;
@@ -179,10 +181,10 @@ public:
         return;
     }
 
-    int compare(Dictionary *D){
+    int compare(Dictionary *D){          //Porownywanie slownika
         DictionaryEntry *temp = head;
         DictionaryEntry *tempD = D->head;
-        if(checkSize() == 0 || D->checkSize() == 0){
+        if(checkSize() == 0 || D->checkSize() == 0){   //Najpierw porownoje wielkosci
             if(head == D->head)
                 return 0;
             else
@@ -192,7 +194,7 @@ public:
             return 1;
         }
         while(temp->next != 0){
-            if(temp->key != tempD->key || temp->value != tempD->value)
+            if(temp->key != tempD->key || temp->value != tempD->value)       //Porownywanie kluczy i wartosci
                 return 1;
             temp = temp->next;
             tempD = tempD->next;

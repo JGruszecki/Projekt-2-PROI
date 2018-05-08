@@ -6,7 +6,7 @@ using namespace std;
 
     int test1::add(){
         if(dict1.addEntry(1,1) == 0 && dict2.addEntry(2,2) == 0){
-            cout << "Dodawanie pary (klucz, wartosc) udana" << endl << endl;
+            cout << "Dodawanie pary (klucz, wartosc) udane" << endl << endl;
             return 0;
         }
         else{
@@ -17,7 +17,7 @@ using namespace std;
 
     int test1::del(){
         if(dict1.deleteEntry(1) == 0){
-            cout << "Usuwanie pary (klucz, wartosc) udana" << endl << endl;
+            cout << "Usuwanie pary (klucz, wartosc) udane" << endl << endl;
             return 0;
         }
         else{
@@ -74,8 +74,10 @@ using namespace std;
 
     void test1::print(){
         cout << "Wypisywanie slownikow:" << endl;
+        cout << "Slownik A: " << endl;
         dict1.print();
         cout << endl;
+        cout << "Slownik B: " << endl;
         dict2.print();
         cout << endl;
     }
@@ -153,8 +155,10 @@ int test2::add(){
 
     void test2::print(){
         cout << "Wypisywanie slownikow:" << endl;
+        cout << "Slownik A: " << endl;
         dict1.print();
         cout << endl;
+        cout << "Slownik B: " << endl;
         dict2.print();
         cout << endl;
     }
